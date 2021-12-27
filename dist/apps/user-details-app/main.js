@@ -73,7 +73,9 @@ let UserDetailsAppModule = class UserDetailsAppModule {
 };
 UserDetailsAppModule = __decorate([
     (0, common_1.Module)({
-        imports: [user_details_module_1.UserDetailsModule, graphql_1.GraphQLModule.forRoot({
+        imports: [
+            user_details_module_1.UserDetailsModule,
+            graphql_1.GraphQLModule.forRoot({
                 autoSchemaFile: (0, path_1.join)(process.cwd(), 'src/user-detail-schema.gql'),
             }),
             typeorm_1.TypeOrmModule.forRoot({
@@ -85,7 +87,8 @@ UserDetailsAppModule = __decorate([
                 database: 'user-details',
                 entities: [user_detail_entity_1.UserDetail],
                 synchronize: true,
-            })],
+            }),
+        ],
         controllers: [user_details_app_controller_1.UserDetailsAppController],
         providers: [user_details_app_service_1.UserDetailsAppService],
     })
@@ -616,7 +619,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core_1 = __webpack_require__(/*! @nestjs/core */ "@nestjs/core");
 const user_details_app_module_1 = __webpack_require__(/*! ./user-details-app.module */ "./apps/user-details-app/src/user-details-app.module.ts");
 async function bootstrap() {
-    const app = await core_1.NestFactory.create(user_details_app_module_1.UserDetailsAppModule);
+    const app = await core_1.NestFactory.create(user_details_app_module_1.UserDetailsAppModule, { cors: true });
     await app.listen(3000);
 }
 bootstrap();
